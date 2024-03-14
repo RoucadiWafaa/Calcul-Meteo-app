@@ -1,0 +1,7 @@
+{
+  "name": "calcul_et_meteo",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
