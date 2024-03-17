@@ -24,7 +24,7 @@ export class WeatherPage {
   getWeatherData(){
     if (this.ville.trim() !== '') {
       this.weatherData = null; // Clear the previous data
-      const url = "https://api.openweathermap.org/data/2.5/weather?q=" + this.ville.trim() + "&appid=9a9b477204fec6b73bdb5aa86367bccd&units=metric";
+      const url = "https://api.openweathermap.org/data/2.5/weather?q=" + this.ville.trim() + "&appid=YOURTOKEN&units=metric";
       this.httpclient.get(url).subscribe(
         (response) => {
           this.weatherData = response;
