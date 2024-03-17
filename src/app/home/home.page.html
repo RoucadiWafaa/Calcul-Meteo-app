@@ -1,20 +1,59 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Calculatrice</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Entrer un nombre</ion-label>
+        <ion-input [(ngModel)]="op1" type="number"></ion-input>
+      </ion-item>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+      <ion-item>
+        <ion-label position="floating">Entrer un nombre</ion-label>
+        <ion-input [(ngModel)]="op2" type="number"></ion-input>
+      </ion-item>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col size="3">
+            <ion-button expand="block" (click)="addition()">
+              <ion-icon name="add-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button expand="block" (click)="soustraction()">
+              <ion-icon name="remove-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button expand="block" (click)="multiplication()">
+              <ion-icon name="close-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button expand="block" (click)="division()">
+              /
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-item>
+        <ion-label position="floating">Résultat</ion-label>
+        <ion-input [(ngModel)]="rslt" type="number" readonly></ion-input>
+      </ion-item>
+
+      <ion-button expand="full" (click)="clear()">
+        Effacer
+      </ion-button>
+
+      <ion-button expand="full" color="secondary" (click)="gotowt()">
+        Aller au Météo
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

@@ -1,0 +1,92 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Météo</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label position="floating">Entrer la ville</ion-label>
+          <ion-input [(ngModel)]="ville" type="text" name="Ville" placeholder="Ville"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12">
+        <ion-button expand="block" fill="outline" shape="round" (click)="getWeatherData()">
+          <ion-icon slot="start" name="search"></ion-icon>
+          Vérifier météo
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngIf="weatherData; else loading">
+    <ion-card class="weather-card" [style.--background]="getBackgroundStyle()">
+      <ion-card-header>
+        <ion-card-title>{{ ville | titlecase }} Météo</ion-card-title>
+        <ion-card-subtitle *ngIf="pays">
+          <img src="https://flagcdn.com/w40/{{pays | lowercase}}.png" width="20"> {{ pays }}
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div class="weather-info">
+                <ion-icon name="thermometer"></ion-icon>
+                Température: {{ temp }}°
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="weather-info">
+                <ion-icon name="water"></ion-icon>
+                Humidité: {{ hum }}%
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <div class="weather-info">
+                <ion-icon name="arrow-up-outline"></ion-icon>
+                Température Max: {{ temp_max }}°
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="weather-info">
+                <img src="../../assets/icon/windicon.png" width="23"/>
+                Vent: {{ wind }} km/h
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <div class="weather-info">
+                <ion-icon name="arrow-down-outline"></ion-icon>
+                Température min: {{ temp_min }}°
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="weather-info">
+                <ion-icon name="speedometer"></ion-icon>
+                Pression: {{ pres }} hPa
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <ng-template #loading>
+    <ion-spinner></ion-spinner>
+  </ng-template>
+</ion-content>
